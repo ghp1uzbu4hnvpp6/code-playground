@@ -25,13 +25,81 @@
         </div>
     </body>
     <script>
+        function encrypt(str1,str2) {
+            // helper: map '0'–'9','a'–'z','A'-'Z' → 0-61
+            const charToVal = ch => {
+                const code = ch.charCodeAt(0);
+                if (code >= 0x30 && code <= 0x39) // '0'–'9'
+                return code - 0x30;
+                if (code >= 0x61 && code <= 0x7A) // 'a'–'z'
+                return 10 + (code - 0x61);
+                if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
+                return 36 + (code - 0x41);
+                throw new Error("Invalid character: " + ch);
+            };
+
+            const valToChar = v => {
+                if (v >= 0 && v <= 9)    return String.fromCharCode(0x30 + v);
+                if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
+                if (v>=36 && v<62)       return String.fromCharCode(0x41 + (v - 36));
+                throw new Error("Value out of range: " + v);
+            };
+
+            const resultChars = [];
+            for (let i = 0; i < str1.length; i++) {
+                if (str1[i]=='.'||str2[i]=='0') {
+                    resultChars.push(str1[i]);
+                    continue;
+                }
+    /*‮*/            const c1 = charToVal(str1[i]);
+                const c2 = charToVal(str2[i]);
+                const code = (c1+c2) % 62;
+                resultChars.push(valToChar(code));
+            }
+
+            return resultChars.join('');
+        }
+   /*‮*/     function decrypt(str1,str2) {
+            // helper: map '0'–'9','a'–'z' → 0–35
+      /*‮*/      const charToVal = ch => {
+                const code = ch.charCodeAt(0);
+                if (code >= 0x30 && code <= 0x39) // '0'–'9'
+                return code - 0x30;
+                if (code >= 0x61 && code <= 0x7A) // 'a'–'z'
+                return 10 + (code - 0x61);
+                if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
+                return 36 + (code - 0x41);
+        /*‮*/        throw new Error("Invalid character: " + ch);
+            };
+
+            const valToChar = v => {
+                if (v >= 0 && v <= 9)    return String.fromCharCode(0x30 + v);
+                if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
+     /*‮*/           if (v>=36 && v<62)       return String.fromCharCode(0x41 + (v - 36));
+                throw new Error("Value out of range: " + v);
+            };
+
+            const resultChars = [];
+            for (let i = 0; i < str1.length; i++) {
+                if (str1[i]=='.'||str2[i]=='0') {
+                    resultChars.push(str1[i]);
+                    continue;
+                }
+                const c1 = charToVal(str1[i]);
+                const c2 = charToVal(str2[i]);
+                const code = (c1-c2+62) % 62;
+                resultChars.push(valToChar(code));
+            }
+
+            return resultChars.join('');
+        }
         document.getElementById('go1').addEventListener('click', () => {
             let c=document.getElementById('inp1').value;
-            if (c!=200) {
-                document.getElementById("yogurt").innerHTML="wrong!";
+    /*‮*/        if (c!=200) {
+    /*‮*/            document.getElementById("yogurt").innerHTML="wrong!";
             } else {
-                document.getElementById("yogurt").innerHTML="k3o9fmw1x2mzzec <a href='willputlinkherelater'>next stage</a>";
+      /*‮*/          document.getElementById("yogurt").innerHTML=decrypt("IcimWwEdHcVU40m","y22ctwy8r4yuxyi")+" <a href='play3'>next stage</a>";
             }
-        });
+  /*‮*/      });
     </script>
 </html>

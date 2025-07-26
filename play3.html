@@ -20,8 +20,10 @@
         </div>
 
         <div align="center">
-            <p>Guess the number(1-1000):<input type="number" id="inp1" max="1000" min="1" value="1"><button id="go1">Send</button></p>
-            <p id="yogurt">I will say if the number is too high or too low.</p>
+            <p>Which country is this???</p>
+            <img src="https://i.ibb.co/r1tTT57/image.png">
+            <p><input type="text"><button id="go1">Send</button></p>
+            <p id="yogurt"></p>
         </div>
     </body>
     <script>
@@ -59,7 +61,7 @@
 
             return resultChars.join('');
         }
-  /*‮*/      function decrypt(str1,str2) {
+   /*‮*/     function decrypt(str1,str2) {
             // helper: map '0'–'9','a'–'z' → 0–35
             const charToVal = ch => {
                 const code = ch.charCodeAt(0);
@@ -67,25 +69,25 @@
                 return code - 0x30;
                 if (code >= 0x61 && code <= 0x7A) // 'a'–'z'
                 return 10 + (code - 0x61);
-       /*‮*/         if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
-                return 36 + (code - 0x41);
+                if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
+   /*‮*/             return 36 + (code - 0x41);
                 throw new Error("Invalid character: " + ch);
             };
 
             const valToChar = v => {
                 if (v >= 0 && v <= 9)    return String.fromCharCode(0x30 + v);
-                if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
+      /*‮*/          if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
                 if (v>=36 && v<62)       return String.fromCharCode(0x41 + (v - 36));
-      /*‮*/          throw new Error("Value out of range: " + v);
+                throw new Error("Value out of range: " + v);
             };
 
             const resultChars = [];
             for (let i = 0; i < str1.length; i++) {
-                if (str1[i]=='.'||str2[i]=='0') {
+  /*‮*/              if (str1[i]=='.'||str2[i]=='0') {
                     resultChars.push(str1[i]);
                     continue;
                 }
-     /*‮*/           const c1 = charToVal(str1[i]);
+    /*‮*/            const c1 = charToVal(str1[i]);
                 const c2 = charToVal(str2[i]);
                 const code = (c1-c2+62) % 62;
                 resultChars.push(valToChar(code));
@@ -94,13 +96,11 @@
             return resultChars.join('');
         }
         document.getElementById('go1').addEventListener('click', () => {
-    /*‮*/        let c=document.getElementById('inp1').value;
-            if (c>621) {
-    /*‮*/            document.getElementById("yogurt").innerHTML="too high";
-            } else if (c<621) {
-   /*‮*/             document.getElementById("yogurt").innerHTML="too low";
+            let c=document.getElementById('inp1').value;
+            if (c.toLowerCase()!="guatemala") {
+                document.getElementById("yogurt").innerHTML="wrong!";
             } else {
-  /*‮*/              document.getElementById("yogurt").innerHTML=decrypt("roqAhDJ5RpszAop","7l2r2hd4kn601ad")+" <a href='play2'>next stage</a>";
+        /*‮*/        document.getElementById("yogurt").innerHTML=decrypt("wfSDLMwsFRIgXrQ","ufk6yyo8uin1znw")+" <a href='play4'>next stage</a>";
             }
         });
     </script>

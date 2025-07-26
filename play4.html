@@ -12,6 +12,15 @@
             color: blue;
             text-decoration: underline;
         }
+        .ypos{
+            position: absolute;
+            top: 0px;
+        }
+        .xpos{
+            position: absolute;
+            left: auto;
+            right: auto;
+        }
     </style>
     <body>
         <div align="center">
@@ -20,11 +29,20 @@
         </div>
 
         <div align="center">
-            <p>Guess the number(1-1000):<input type="number" id="inp1" max="1000" min="1" value="1"><button id="go1">Send</button></p>
-            <p id="yogurt">I will say if the number is too high or too low.</p>
+            <p>Click the button</p>
+            <p id="yogurt"></p>
+        </div>
+
+        <div class="ypos">
+            <button id="go1" class="xpos">Send</button>
         </div>
     </body>
     <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
         function encrypt(str1,str2) {
             // helper: map '0'–'9','a'–'z','A'-'Z' → 0-61
             const charToVal = ch => {
@@ -59,7 +77,7 @@
 
             return resultChars.join('');
         }
-  /*‮*/      function decrypt(str1,str2) {
+ /*‮*/       function decrypt(str1,str2) {
             // helper: map '0'–'9','a'–'z' → 0–35
             const charToVal = ch => {
                 const code = ch.charCodeAt(0);
@@ -67,40 +85,43 @@
                 return code - 0x30;
                 if (code >= 0x61 && code <= 0x7A) // 'a'–'z'
                 return 10 + (code - 0x61);
-       /*‮*/         if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
-                return 36 + (code - 0x41);
+                if (code >= 0x41 && code <= 0x5A) // 'A'–'Z'
+   /*‮*/             return 36 + (code - 0x41);
                 throw new Error("Invalid character: " + ch);
             };
 
             const valToChar = v => {
                 if (v >= 0 && v <= 9)    return String.fromCharCode(0x30 + v);
-                if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
+/*‮*/                if (v >= 10 && v < 36)   return String.fromCharCode(0x61 + (v - 10));
                 if (v>=36 && v<62)       return String.fromCharCode(0x41 + (v - 36));
-      /*‮*/          throw new Error("Value out of range: " + v);
+                throw new Error("Value out of range: " + v);
             };
 
             const resultChars = [];
             for (let i = 0; i < str1.length; i++) {
-                if (str1[i]=='.'||str2[i]=='0') {
+      /*‮*/          if (str1[i]=='.'||str2[i]=='0') {
                     resultChars.push(str1[i]);
                     continue;
                 }
-     /*‮*/           const c1 = charToVal(str1[i]);
+                const c1 = charToVal(str1[i]);
                 const c2 = charToVal(str2[i]);
                 const code = (c1-c2+62) % 62;
-                resultChars.push(valToChar(code));
+      /*‮*/          resultChars.push(valToChar(code));
             }
 
             return resultChars.join('');
         }
+        let cnt=0;
         document.getElementById('go1').addEventListener('click', () => {
-    /*‮*/        let c=document.getElementById('inp1').value;
-            if (c>621) {
-    /*‮*/            document.getElementById("yogurt").innerHTML="too high";
-            } else if (c<621) {
-   /*‮*/             document.getElementById("yogurt").innerHTML="too low";
+            if (cnt<10) {
+                let lf=Math.random()*100;
+                document.getElementsByClassName("xpos")[0].style.left=lf+"%";
+                document.getElementsByClassName("xpos")[0].style.right=(100-lf)+"%";
+                let tp=Math.random()*100;
+                document.getElementsByClassName("ypos")[0].style.top=tp+"px";
+                cnt++;
             } else {
-  /*‮*/              document.getElementById("yogurt").innerHTML=decrypt("roqAhDJ5RpszAop","7l2r2hd4kn601ad")+" <a href='play2'>next stage</a>";
+                document.getElementById("yogurt").innerHTML=decrypt("jCKuG6wyBGFDUoh","53kb7xj9eowbxd0")+" There are actually 5 codes to find the jigsaws, you just have to find where the last one at :)";
             }
         });
     </script>
