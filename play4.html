@@ -14,10 +14,10 @@
         }
         .ypos{
             position: absolute;
-            top: 0px;
+            top: 150px;
         }
         .xpos{
-            position: absolute;
+            position: fixed;
             left: auto;
             right: auto;
         }
@@ -114,8 +114,8 @@
         let cnt=0;
         document.getElementById('go1').addEventListener('click', () => {
             if (cnt<10) {
-                let lf=Math.random()*100;
-                document.getElementsByClassName("xpos")[0].style.left=lf+"%";
+                let lf=Math.random()*80;
+                document.getElementsByClassName("xpos")[0].style.left=(10+lf)+"%";
                 let tp=Math.random()*200;
                 document.getElementsByClassName("ypos")[0].style.top=(150+tp)+"px";
                 cnt++;
