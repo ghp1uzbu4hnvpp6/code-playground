@@ -18,5 +18,22 @@
             <a href="https://ghp1uzbu4hnvpp6.github.io/code-playground" class="game"><h1>code playground</h1></a>
             <p>find them all.</p>
         </div>
+
+        <div align="center">
+            <p>Guess the number(1-1000):<input type="number" id="inp1" max="1000" min="1" value="1"><button id="go1">Send</button></p>
+            <p id="yogurt">I will say if the number is too high or too low.</p>
+        </div>
     </body>
+    <script>
+        document.getElementById('go1').addEventListener('click', () => {
+            let c=document.getElementById('inp1').value;
+            if (c>621) {
+                document.getElementById("yogurt").innerHTML="too high";
+            } else if (c<621) {
+                document.getElementById("yogurt").innerHTML="too low";
+            } else {
+                document.getElementById("yogurt").innerHTML="vk21weubov7wayc <a href='willputlinkherelater'>next stage</a>";
+            }
+        });
+    </script>
 </html>
