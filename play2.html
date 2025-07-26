@@ -20,19 +20,17 @@
         </div>
 
         <div align="center">
-            <p>Guess the number(1-1000):<input type="number" id="inp1" max="1000" min="1" value="1"><button id="go1">Send</button></p>
-            <p id="yogurt">I will say if the number is too high or too low.</p>
+            <p>How many BPM does this song have? <a href="https://www.newgrounds.com/audio/listen/3837">(the song)</a> :<input type="number" id="inp1" max="1000" min="1" value="1"><button id="go1">Send</button></p>
+            <p id="yogurt"></p>
         </div>
     </body>
     <script>
         document.getElementById('go1').addEventListener('click', () => {
             let c=document.getElementById('inp1').value;
-            if (c>621) {
-                document.getElementById("yogurt").innerHTML="too high";
-            } else if (c<621) {
-                document.getElementById("yogurt").innerHTML="too low";
+            if (c!=200) {
+                document.getElementById("yogurt").innerHTML="wrong!";
             } else {
-                document.getElementById("yogurt").innerHTML="9ghpn5y5jr74mg3 <a href='play2'>next stage</a>";
+                document.getElementById("yogurt").innerHTML="k3o9fmw1x2mzzec <a href='willputlinkherelater'>next stage</a>";
             }
         });
     </script>
