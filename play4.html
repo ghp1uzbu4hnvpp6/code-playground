@@ -20,6 +20,8 @@
             position: fixed;
             left: 50%;
             right: auto;
+            background-color: aliceblue;
+            font-size: 80px;
         }
     </style>
     <body>
@@ -112,6 +114,7 @@
             return resultChars.join('');
         }
         let cnt=0;
+        
         document.getElementById('go1').addEventListener('click', () => {
             if (cnt<10) {
                 let lf=Math.random()*80;
