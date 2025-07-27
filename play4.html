@@ -117,11 +117,12 @@
         
         document.getElementById('go1').addEventListener('click', () => {
             if (cnt<10) {
+                cnt++;
                 let lf=Math.random()*80;
                 document.getElementsByClassName("xpos")[0].style.left=(10+lf)+"%";
+                document.getElementsByClassName("xpos")[0].style.fontSize=80-(cnt)*8;
                 let tp=Math.random()*200;
                 document.getElementsByClassName("ypos")[0].style.top=(150+tp)+"px";
-                cnt++;
             } else {
                 document.getElementById("yogurt").innerHTML=decrypt("jCKuG6wyBGFDUoh","53kb7xj9eowbxd0")+" There are actually 5 codes to find the jigsaws, you just have to find where the last one at :)";
             }
