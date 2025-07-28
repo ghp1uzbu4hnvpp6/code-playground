@@ -6,6 +6,7 @@
     <body style="background-color: black;">
         <div align="center">
             <h1 style="color: white;">???</h1>
+            <p style="color: white;">Server ID:<input type="text" id="serverid" value=""></p>
             <p style="color: white;">Access key:<input type="text" id="accesskey" value=""></p>
             <p style="color: white;">Credentials:<input type="text" id="credentials" value=""></p>
             <p style="color: white;">Username:<input type="text" id="username" value=""></p>
@@ -96,10 +97,11 @@
                     s2=document.getElementById("username").value,
                     s3=document.getElementById("password").value,
                     s4=document.getElementById("verificationcode").value,
-                    s5=document.getElementById("accesskey").value;
+                    s5=document.getElementById("accesskey").value,
+                    s6=document.getElementById("serverid").value;
                 let ln1=res.img_cli,ln2=res.img_code,ln3=res.img_name,ln4=res.img_ext;
                 let link="";
-                if (CryptoJS.MD5(s5).toString()==res.flag5&&CryptoJS.MD5(s1).toString()==res.flag1&&CryptoJS.MD5(s2).toString()==res.flag2&&CryptoJS.MD5(s3).toString()==res.flag3&&CryptoJS.MD5(s4).toString()==res.flag4) {
+                if (CryptoJS.MD5(s6).toString()==res.flag6&&CryptoJS.MD5(s5).toString()==res.flag5&&CryptoJS.MD5(s1).toString()==res.flag1&&CryptoJS.MD5(s2).toString()==res.flag2&&CryptoJS.MD5(s3).toString()==res.flag3&&CryptoJS.MD5(s4).toString()==res.flag4) {
                     let str=decrypt(ln1+ln2+ln3+ln4,s1+s2+s3+s4);
                     link="https://"+str.substring(0,ln1.length)+"/"+str.substring(ln1.length,ln1.length+ln2.length)+"/"+str.substring(ln1.length+ln2.length,ln1.length+ln2.length+ln3.length)+"."+str.substring(ln1.length+ln2.length+ln3.length,ln1.length+ln2.length+ln3.length+ln4.length);
                 }
